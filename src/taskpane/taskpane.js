@@ -19,6 +19,57 @@ export async function run() {
    */
 
   const item = Office.context.mailbox.item;
+  console.warn("oggetto");
+  console.warn(item.subject);
+
+  item.body.getAsync("text", (result) => {
+    if (result.status === Office.AsyncResultStatus.Succeeded) {
+      const body = result.value;
+
+      console.warn("corpo");
+      console.warn(body);
+
+      // Recupera altre proprietà
+      const subject = item.subject || "Nessun oggetto";
+      const from = item.from ? item.from.emailAddress : "Mittente sconosciuto";
+      const to = item.to ? item.to.map((t) => t.emailAddress).join(", ") : "Destinatari sconosciuti";
+
+      // Costruisci il messaggio
+      const rawMessage = `
+              Oggetto: ${subject}
+              Mittente: ${from}
+              Destinatari: ${to}
+              
+              Corpo:
+              ${body}
+          `;
+
+      // Visualizza l'alert
+      const message = {
+        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
+        message: rawMessage,
+        icon: "Icon.80x80",
+        persistent: true,
+      };
+
+      // Show a notification message.
+      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
+    } else {
+      const message = {
+        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
+        message: result.error.message,
+        icon: "Icon.80x80",
+        persistent: true,
+      };
+
+      // Show a notification message.
+      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
+    }
+  });
+
+
+
+
   let insertAt = document.getElementById("item-subject");
   let label = document.createElement("b").appendChild(document.createTextNode("Subject: "));
   insertAt.appendChild(label);
