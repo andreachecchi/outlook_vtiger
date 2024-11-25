@@ -36,13 +36,29 @@ function action(event) {
           `;
 
       // Visualizza l'alert
-      alert(rawMessage);
+      const message = {
+        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
+        message: rawMessage,
+        icon: "Icon.80x80",
+        persistent: true,
+      };
+
+      // Show a notification message.
+      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
     } else {
-      console.error("Errore nel recuperare il corpo:", result.error.message);
+      const message = {
+        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
+        message: result.error.message,
+        icon: "Icon.80x80",
+        persistent: true,
+      };
+
+      // Show a notification message.
+      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
     }
   });
 
-  const message = {
+  /*  const message = {
     type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
     message: "Messaggio inserito in VTiger",
     icon: "Icon.80x80",
@@ -51,7 +67,7 @@ function action(event) {
 
   // Show a notification message.
   Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
-
+*/
   // Be sure to indicate when the add-in command function is complete.
   event.completed();
 }
