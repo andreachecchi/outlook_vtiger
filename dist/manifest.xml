@@ -94,13 +94,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Openia Vtiger Add-in"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane"/>
-        <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
+        <bt:String id="GroupLabel" DefaultValue="Vtiger Add-in"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="VTiger"/>
+        <!-- <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/> -->
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
-        <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens the VTiger pane"/>
+        <!-- <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/> -->
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

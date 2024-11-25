@@ -67,9 +67,6 @@ export async function run() {
     }
   });
 
-
-
-
   let insertAt = document.getElementById("item-subject");
   let label = document.createElement("b").appendChild(document.createTextNode("Subject: "));
   insertAt.appendChild(label);
@@ -79,27 +76,27 @@ export async function run() {
 }
 
 export async function loadContent() {
-  const url = 'https://jsonplaceholder.typicode.com/posts/4'; // URL del webservice pubblico
+  const url = "https://jsonplaceholder.typicode.com/posts/4"; // URL del webservice pubblico
 
   try {
     const response = await fetch(url);
 
-      if (!response.ok) {
-          throw new Error(`Errore HTTP: ${response.status}`);
-      }
+    if (!response.ok) {
+      throw new Error(`Errore HTTP: ${response.status}`);
+    }
 
-      const data = await response.json(); // Supponendo che il servizio restituisca JSON
+    const data = await response.json(); // Supponendo che il servizio restituisca JSON
 
-      // Scrive i dati nel <div id="prova">
-      const provaDiv = document.getElementById('prova');
-      provaDiv.innerHTML = `
+    // Scrive i dati nel <div id="prova">
+    const provaDiv = document.getElementById("prova");
+    provaDiv.innerHTML = `
           <h3>${data.title}</h3>
           <p>${data.body}</p>
       `;
   } catch (error) {
-      console.error('Errore nella chiamata al web service:', error);
-      const provaDiv = document.getElementById('prova');
-      provaDiv.textContent = 'Errore nel caricamento dei dati.';
+    console.error("Errore nella chiamata al web service:", error);
+    const provaDiv = document.getElementById("prova");
+    provaDiv.textContent = "Errore nel caricamento dei dati.";
   }
 }
 
