@@ -21,7 +21,7 @@ async function getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user) {
   const password = basicauth_pass;
 
   // eslint-disable-next-line no-undef
-  auth = null;
+  let auth = null;
 
   if (username != null && password != null) {
     // eslint-disable-next-line no-undef
