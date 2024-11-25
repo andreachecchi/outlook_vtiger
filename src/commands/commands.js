@@ -14,6 +14,34 @@ Office.onReady(() => {
  * @param event {Office.AddinCommands.Event}
  */
 function action(event) {
+  const item = Office.context.mailbox.item;
+
+  // Ottieni il corpo del messaggio
+  item.body.getAsync("text", (result) => {
+    if (result.status === Office.AsyncResultStatus.Succeeded) {
+      const body = result.value;
+      // Recupera altre proprietà
+      const subject = item.subject || "Nessun oggetto";
+      const from = item.from ? item.from.emailAddress : "Mittente sconosciuto";
+      const to = item.to ? item.to.map((t) => t.emailAddress).join(", ") : "Destinatari sconosciuti";
+
+      // Costruisci il messaggio
+      const rawMessage = `
+              Oggetto: ${subject}
+              Mittente: ${from}
+              Destinatari: ${to}
+              
+              Corpo:
+              ${body}
+          `;
+
+      // Visualizza l'alert
+      alert(rawMessage);
+    } else {
+      console.error("Errore nel recuperare il corpo:", result.error.message);
+    }
+  });
+
   const message = {
     type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
     message: "Messaggio inserito in VTiger",
