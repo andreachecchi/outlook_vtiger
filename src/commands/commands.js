@@ -16,7 +16,7 @@ Office.onReady(() => {
 function action(event) {
   const message = {
     type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
-    message: "Performed action custom canino.",
+    message: "Messaggio inserito in VTiger",
     icon: "Icon.80x80",
     persistent: true,
   };
