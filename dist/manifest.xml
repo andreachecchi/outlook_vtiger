@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>47737342-5e07-45f5-b671-fde180b6e845</Id>
-  <Version>1.0.0.8</Version>
+  <Version>1.0.0.9</Version>
   <ProviderName>Openia</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Openia VTiger Addin"/>
@@ -62,7 +62,7 @@
                     <SourceLocation resid="Taskpane.Url"/>
                   </Action>
                 </Control>
-                <Control xsi:type="Button" id="ActionButton">
+                <!-- <Control xsi:type="Button" id="ActionButton">
                   <Label resid="ActionButton.Label"/>
                   <Supertip>
                     <Title resid="ActionButton.Label"/>
@@ -76,7 +76,7 @@
                   <Action xsi:type="ExecuteFunction">
                     <FunctionName>action</FunctionName>
                   </Action>
-                </Control>
+                </Control> -->
               </Group>
             </OfficeTab>
           </ExtensionPoint>
@@ -90,7 +90,7 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/commands.html"/>
+        <!-- <bt:Url id="Commands.Url" DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/commands.html"/> -->
         <bt:Url id="Taskpane.Url" DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
