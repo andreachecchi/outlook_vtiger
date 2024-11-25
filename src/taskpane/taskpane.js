@@ -10,6 +10,8 @@ Office.onReady((info) => {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
+
+    loadContent();
   }
 });
 
@@ -170,6 +172,3 @@ export async function loadContent() {
   }
   */
 }
-
-// Chiama la funzione all'avvio o su un evento specifico
-loadContent();
