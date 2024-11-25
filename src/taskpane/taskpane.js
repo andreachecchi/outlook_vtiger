@@ -13,66 +13,114 @@ Office.onReady((info) => {
   }
 });
 
+async function getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user) {
+  const url = vt_url + "?operation=getchallenge&username=" + vt_user;
+  const username = basicauth_user;
+  const password = basicauth_pass;
+
+  // eslint-disable-next-line no-undef
+  auth = null;
+
+  if (username != null && password != null) {
+    // eslint-disable-next-line no-undef
+    auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
+  }
+
+  try {
+    // eslint-disable-next-line no-undef
+    response = null;
+    // eslint-disable-next-line no-undef
+    if (auth == null) {
+      // eslint-disable-next-line no-undef
+      response = await fetch(url, {
+        method: "GET",
+      });
+    } else {
+      // eslint-disable-next-line no-undef
+      response = await fetch(url, {
+        method: "GET",
+        headers: {
+          // eslint-disable-next-line no-undef
+          Authorization: auth,
+        },
+      });
+    }
+
+    // eslint-disable-next-line no-undef
+    if (!response.ok) {
+      // eslint-disable-next-line no-undef
+      throw new Error("Error: " + response.statusText);
+    }
+
+    // eslint-disable-next-line no-undef
+    const data = await response.json();
+
+    // Controlla se la risposta contiene il token
+    if (data.success && data.result && data.result.token) {
+      return data.result.token; // Restituisci il token
+    } else {
+      throw new Error("Token non trovato nella risposta.");
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-undef
+    console.error("Errore:", error.message);
+    throw error; // Rilancia l'errore per una gestione successiva
+  }
+}
+
 export async function run() {
-  /**
-   * Insert your Outlook code here
-   */
+  // eslint-disable-next-line no-undef
+  const CryptoJS = require("crypto-js");
+
+  let basicauth_user = document.getElementById("basicauth_user");
+  let basicauth_pass = document.getElementById("basicauth_pass");
+  let vt_url = document.getElementById("vt_url");
+  let vt_user = document.getElementById("vt_user");
+  let vt_accesskey = document.getElementById("vt_accesskey");
+
+  getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user)
+    .then((token) => {
+      // eslint-disable-next-line no-undef
+      console.log("Token received:", token);
+
+      const session = CryptoJS.MD5(token + vt_accesskey).toString(CryptoJS.enc.Hex);
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-undef
+      console.error("Error getting token:", error.message);
+    });
 
   const item = Office.context.mailbox.item;
-  console.warn("oggetto");
-  console.warn(item.subject);
-
   item.body.getAsync("text", (result) => {
     if (result.status === Office.AsyncResultStatus.Succeeded) {
       const body = result.value;
+      const subject = item.subject || "No subject";
+      const from = item.from ? item.from.emailAddress : "No sender";
+      const to = item.to ? item.to.map((t) => t.emailAddress).join(", ") : "No receivers";
 
-      console.warn("corpo");
-      console.warn(body);
-
-      // Recupera altre proprietà
-      const subject = item.subject || "Nessun oggetto";
-      const from = item.from ? item.from.emailAddress : "Mittente sconosciuto";
-      const to = item.to ? item.to.map((t) => t.emailAddress).join(", ") : "Destinatari sconosciuti";
-
-      // Costruisci il messaggio
       const rawMessage = `
-              Oggetto: ${subject}
-              Mittente: ${from}
-              Destinatari: ${to}
+              Subject: ${subject}
+              Sender: ${from}
+              Receivers: ${to}
               
-              Corpo:
+              Body:
               ${body}
           `;
 
-      // Visualizza l'alert
-      const message = {
-        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
-        message: rawMessage,
-        icon: "Icon.80x80",
-        persistent: true,
-      };
-
-      // Show a notification message.
-      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
+      //TODO tutto
     } else {
-      const message = {
-        type: Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,
-        message: result.error.message,
-        icon: "Icon.80x80",
-        persistent: true,
-      };
-
-      // Show a notification message.
-      Office.context.mailbox.item.notificationMessages.replaceAsync("action", message);
+      //TODO show alert
     }
   });
 
+  /*
   let insertAt = document.getElementById("item-subject");
   let label = document.createElement("b").appendChild(document.createTextNode("Subject: "));
   insertAt.appendChild(label);
   insertAt.appendChild(document.createElement("br"));
   insertAt.appendChild(document.createTextNode(item.subject));
   insertAt.appendChild(document.createElement("br"));
+  */
 }
 
 export async function loadContent() {
