@@ -72,11 +72,11 @@ export async function run() {
   // eslint-disable-next-line no-undef
   const CryptoJS = require("crypto-js");
 
-  let basicauth_user = document.getElementById("basicauth_user");
-  let basicauth_pass = document.getElementById("basicauth_pass");
-  let vt_url = document.getElementById("vt_url");
-  let vt_user = document.getElementById("vt_user");
-  let vt_accesskey = document.getElementById("vt_accesskey");
+  let basicauth_user = document.getElementById("basicauth_user").value;
+  let basicauth_pass = document.getElementById("basicauth_pass").value;
+  let vt_url = document.getElementById("vt_url").value;
+  let vt_user = document.getElementById("vt_user").value;
+  let vt_accesskey = document.getElementById("vt_accesskey").value;
 
   getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user)
     .then((token) => {
