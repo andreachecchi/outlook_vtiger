@@ -141,11 +141,11 @@ export async function run() {
 }
 
 export async function loadContent() {
-  document.getElementById("basicauth_user").value(Office.context.roamingSettings.get("basicauth_user"));
-  document.getElementById("basicauth_pass").value(Office.context.roamingSettings.get("basicauth_pass"));
-  document.getElementById("vt_url").value(Office.context.roamingSettings.get("vt_url"));
-  document.getElementById("vt_user").value(Office.context.roamingSettings.get("vt_user"));
-  document.getElementById("vt_accesskey").value(Office.context.roamingSettings.get("vt_accesskey"));
+  document.getElementById("basicauth_user").value = Office.context.roamingSettings.get("basicauth_user");
+  document.getElementById("basicauth_pass").value = Office.context.roamingSettings.get("basicauth_pass");
+  document.getElementById("vt_url").value = Office.context.roamingSettings.get("vt_url");
+  document.getElementById("vt_user").value = Office.context.roamingSettings.get("vt_user");
+  document.getElementById("vt_accesskey").value = Office.context.roamingSettings.get("vt_accesskey");
 
   /*
   const url = "https://jsonplaceholder.typicode.com/posts/4"; // URL del webservice pubblico
