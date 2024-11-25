@@ -78,6 +78,21 @@ export async function run() {
   let vt_user = document.getElementById("vt_user").value;
   let vt_accesskey = document.getElementById("vt_accesskey").value;
 
+  Office.context.roamingSettings.set("basicauth_user", basicauth_user);
+  Office.context.roamingSettings.set("basicauth_pass", basicauth_pass);
+  Office.context.roamingSettings.set("vt_url", vt_url);
+  Office.context.roamingSettings.set("vt_user", vt_user);
+  Office.context.roamingSettings.set("vt_accesskey", vt_accesskey);
+
+  // Salvataggio dei dati
+  Office.context.roamingSettings.saveAsync(function (result) {
+    if (result.status === Office.AsyncResultStatus.Succeeded) {
+      console.log("Settings saved successfully!");
+    } else {
+      console.log("Error saving settings: " + result.error.message);
+    }
+  });
+
   getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user)
     .then((token) => {
       // eslint-disable-next-line no-undef
@@ -124,6 +139,13 @@ export async function run() {
 }
 
 export async function loadContent() {
+  document.getElementById("basicauth_user").value(Office.context.roamingSettings.get("basicauth_user"));
+  document.getElementById("basicauth_pass").value(Office.context.roamingSettings.get("basicauth_pass"));
+  document.getElementById("vt_url").value(Office.context.roamingSettings.get("vt_url"));
+  document.getElementById("vt_user").value(Office.context.roamingSettings.get("vt_user"));
+  document.getElementById("vt_accesskey").value(Office.context.roamingSettings.get("vt_accesskey"));
+
+  /*
   const url = "https://jsonplaceholder.typicode.com/posts/4"; // URL del webservice pubblico
 
   try {
@@ -146,6 +168,7 @@ export async function loadContent() {
     const provaDiv = document.getElementById("prova");
     provaDiv.textContent = "Errore nel caricamento dei dati.";
   }
+  */
 }
 
 // Chiama la funzione all'avvio o su un evento specifico
