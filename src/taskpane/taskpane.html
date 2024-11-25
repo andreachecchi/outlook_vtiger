@@ -21,25 +21,26 @@
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Openia" title="Openia" />
-        <h1 class="ms-font-su">Welcome</h1>
+    <!--<header class="ms-welcome__header ms-bgColor-neutralLighter">-->
+    <header class="ms-welcome__header"></header>
+        <img src="../../assets/logo-filled.png" alt="Openia" title="Openia" />
+        <!--<h1 class="ms-font-su">Welcome</h1>-->
     </header>
     <section id="sideload-msg" class="ms-welcome__main">
         <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <div id="prova">xxx</div>
+        <!-- <div id="prova">xxx</div> -->
         <h2 class="ms-font-xl">Configure your VTiger Endpoint</h2>
         <ul class="ms-List ms-welcome__features">
             <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon ms-font-xl"></i>
-                <span class="ms-font-m">URL</span>
+                <i class="ms-Icon ms-Icon--WebEnvironment ms-font-xl"></i>
+                <span class="ms-font-m">URL</span>&nbsp;
                 <span class="ms-font-m"><input id="vt_url" name="vt_url" type="text" value=""></span>
             </li>
             <li class="ms-ListItem">
                 <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
-                <span class="ms-font-m">Token</span>
+                <span class="ms-font-m">Token</span>&nbsp;
                 <span class="ms-font-m"><input id="vt_token" name="vt_token" type="text" value=""></span>
             </li>
         </ul>
