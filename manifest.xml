@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>47737342-5e07-45f5-b671-fde180b6e845</Id>
-  <Version>1.0.0.1</Version>
-  <ProviderName>Contoso</ProviderName>
+  <Version>1.0.0.2</Version>
+  <ProviderName>Openia</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="vtiger"/>
+  <DisplayName DefaultValue="Openia VTiger Addin"/>
   <Description DefaultValue="A template to get started."/>
   <IconUrl DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://andreachecchi.github.io/outlook_vtiger/dist/assets/icon-128.png"/>
