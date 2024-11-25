@@ -1,3 +1,8 @@
 New-SelfSignedCertificate -Type CodeSigning -Subject "CN=VtigerOpenia" -CertStoreLocation "Cert:\CurrentUser\My"
 
 SignTool sign /f "C:\Users\andre\vtiger\src\vtiger_openia.p7b" /p "VtigerOpenia" "C:\Users\andre\vtiger\dist\manifest.xml"
+
+
+Produzione
+https://andreachecchi.github.io/outlook_vtiger/dist/
+https://localhost:3000/

@@ -16,21 +16,23 @@ Office.onReady((info) => {
 });
 
 async function getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user) {
+  // eslint-disable-next-line no-undef
+  const { Buffer } = require("buffer");
   const url = vt_url + "?operation=getchallenge&username=" + vt_user;
 
   // eslint-disable-next-line no-undef
-  let auth = null;
+  let auth = "";
 
-  if (basicauth_user != null && basicauth_pass != null) {
-    // eslint-disable-next-line no-undef
+  if (basicauth_user != "" && basicauth_pass != "") {
+    // eslint-disable-next-line no-undef    
     auth = "Basic " + Buffer.from(basicauth_user + ":" + basicauth_pass).toString("base64");
   }
 
   try {
     // eslint-disable-next-line no-undef
-    response = null;
+    let response = "";
     // eslint-disable-next-line no-undef
-    if (auth == null) {
+    if (auth == "") {
       // eslint-disable-next-line no-undef
       response = await fetch(url, {
         method: "GET",
