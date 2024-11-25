@@ -23,7 +23,7 @@ async function getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user) {
 
   if (basicauth_user != null && basicauth_pass != null) {
     // eslint-disable-next-line no-undef
-    auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
+    auth = "Basic " + Buffer.from(basicauth_user + ":" + basicauth_pass).toString("base64");
   }
 
   try {
