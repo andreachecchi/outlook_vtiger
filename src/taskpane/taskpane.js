@@ -17,13 +17,11 @@ Office.onReady((info) => {
 
 async function getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user) {
   const url = vt_url + "?operation=getchallenge&username=" + vt_user;
-  const username = basicauth_user;
-  const password = basicauth_pass;
 
   // eslint-disable-next-line no-undef
   let auth = null;
 
-  if (username != null && password != null) {
+  if (basicauth_user != null && basicauth_pass != null) {
     // eslint-disable-next-line no-undef
     auth = "Basic " + Buffer.from(username + ":" + password).toString("base64");
   }
