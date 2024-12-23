@@ -31,8 +31,11 @@
         <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
     </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <!-- <div id="prova">xxx</div> -->
-        <h2 class="ms-font-l">Configure your VTiger Endpoint</h2>
+        <!-- <div id="prova">xxx</div> -->        
+        <br>
+        <button class="ms-font-l" id="config_btn">Configure your VTiger Endpoint</button>
+        <br>
+        <div class="collapsible-content">
         <ul class="ms-List ms-welcome__features">
             <hr>
             <li class="ms-ListItem">
@@ -68,11 +71,29 @@
                 <span class="ms-font-m"><input id="vt_accesskey" name="vt_accesskey" type="password" value=""></span>
             </li>
         </ul>
+        </div>
+        <br>
+        <div>
+            <ul class="ms-List ms-welcome__features">
+                <hr>
+                <li class="ms-ListItem">
+                    <span class="ms-font-m"><b>Select the Project to attach the mail to</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </li>
+                <li class="ms-ListItem">
+                    <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
+                    <span class="ms-font-m span_fields">Project</span>&nbsp;
+                    <span class="ms-font-m" id="selectProjectContainer"></span>
+                </li>
+            </ul>
+        </div>        
         <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Archive this email to VTiger!</span>
+            <span class="ms-Button-label" id="archive_btn">Archive this email to VTiger!</span>
+        </div>
+        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
+            <span class="ms-Button-label" id="saved_banner">Email archived successfully!</span>
         </div>
         <p><label id="item-subject"></label></p>
-    </main>
+    </main>    
 </body>
 
 </html>
