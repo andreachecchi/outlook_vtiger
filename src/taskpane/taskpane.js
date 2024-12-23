@@ -151,6 +151,7 @@ async function getUserId(basicauth_user, basicauth_pass, vt_url, vt_session, vt_
 
   let query = "select id from Users where user_name = '" + vt_user + "';";
 
+  // eslint-disable-next-line no-undef
   console.log("query: " + query);
 
   // eslint-disable-next-line no-undef
@@ -165,7 +166,7 @@ async function getUserId(basicauth_user, basicauth_pass, vt_url, vt_session, vt_
     // eslint-disable-next-line no-undef
     if (auth == "") {
       // eslint-disable-next-line no-undef
-      response = await fetch(url+"?"+params.toString(), {
+      response = await fetch(url + "?" + params.toString(), {
         method: "GET",
         //headers: {
         // eslint-disable-next-line no-undef
@@ -174,7 +175,7 @@ async function getUserId(basicauth_user, basicauth_pass, vt_url, vt_session, vt_
       });
     } else {
       // eslint-disable-next-line no-undef
-      response = await fetch(url+"?"+params.toString(), {
+      response = await fetch(url + "?" + params.toString(), {
         method: "GET",
         headers: {
           // eslint-disable-next-line no-undef
@@ -201,8 +202,18 @@ async function getUserId(basicauth_user, basicauth_pass, vt_url, vt_session, vt_
   }
 }
 
-async function addProjectTask(basicauth_user, basicauth_pass, vt_url, vt_session, email_subject, email_content, prj_id, vt_user) {
+async function addProjectTask(
+  basicauth_user,
+  basicauth_pass,
+  vt_url,
+  vt_session,
+  email_subject,
+  email_content,
+  prj_id,
+  vt_user
+) {
   const url = vt_url;
+  // eslint-disable-next-line no-undef
   console.log("url:", url);
 
   // eslint-disable-next-line no-undef
@@ -210,14 +221,15 @@ async function addProjectTask(basicauth_user, basicauth_pass, vt_url, vt_session
 
   if (basicauth_user != "" && basicauth_pass != "") {
     const authString = `${basicauth_user}:${basicauth_pass}`;
+    // eslint-disable-next-line no-undef
     const encodedAuth = btoa(authString);
     auth = `Basic ${encodedAuth}`;
   }
 
   let today = new Date();
   let year = today.getFullYear();
-  let month = String(today.getMonth() + 1).padStart(2, '0');
-  let day = String(today.getDate()).padStart(2, '0');
+  let month = String(today.getMonth() + 1).padStart(2, "0");
+  let day = String(today.getDate()).padStart(2, "0");
   let formattedTodayDate = `${year}-${month}-${day}`;
 
   let user_id = await getUserId(basicauth_user, basicauth_pass, vt_url, vt_session, vt_user);
@@ -230,8 +242,8 @@ async function addProjectTask(basicauth_user, basicauth_pass, vt_url, vt_session
     projecttaskhours: 0,
     startdate: formattedTodayDate,
   };
-  const encodedElement = encodeURIComponent(JSON.stringify(element));
 
+  // eslint-disable-next-line no-undef
   const params = new URLSearchParams();
   params.append("operation", "create");
   params.append("sessionName", vt_session);
@@ -346,7 +358,6 @@ async function getProjects(basicauth_user, basicauth_pass, vt_url, vt_session) {
 
 export async function run() {
   try {
-
     // eslint-disable-next-line no-undef
     const CryptoJS = require("crypto-js");
 
@@ -355,18 +366,20 @@ export async function run() {
     let vt_url = document.getElementById("vt_url").value;
     let vt_user = document.getElementById("vt_user").value;
     let vt_accesskey = document.getElementById("vt_accesskey").value;
-  
+
     Office.context.roamingSettings.set("basicauth_user", basicauth_user);
     Office.context.roamingSettings.set("basicauth_pass", basicauth_pass);
     Office.context.roamingSettings.set("vt_url", vt_url);
     Office.context.roamingSettings.set("vt_user", vt_user);
     Office.context.roamingSettings.set("vt_accesskey", vt_accesskey);
-  
+
     // Salvataggio dei dati
     Office.context.roamingSettings.saveAsync(function (result) {
       if (result.status === Office.AsyncResultStatus.Succeeded) {
+        // eslint-disable-next-line no-undef
         console.log("Settings saved successfully!");
       } else {
+        // eslint-disable-next-line no-undef
         console.log("Error saving settings: " + result.error.message);
       }
     });
@@ -374,13 +387,17 @@ export async function run() {
     let prj_id = document.getElementById("projectSelect").value;
 
     const token = await getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user);
+    // eslint-disable-next-line no-undef
     console.log("Token received: ", token);
+    // eslint-disable-next-line no-undef
     console.log("vt_tok_accesskey (concat): ", token + vt_accesskey);
     const vt_tok_accesskey = CryptoJS.MD5(token + vt_accesskey).toString(CryptoJS.enc.Hex);
+    // eslint-disable-next-line no-undef
     console.log("vt_tok_accesskey: ", vt_tok_accesskey);
     const vt_session = await getSession(basicauth_user, basicauth_pass, vt_url, vt_user, vt_tok_accesskey);
-    console.log("Session name:", vt_session);  
-  
+    // eslint-disable-next-line no-undef
+    console.log("Session name:", vt_session);
+
     const item = Office.context.mailbox.item;
     let rawMessage = "";
     item.body.getAsync("text", (result) => {
@@ -409,10 +426,12 @@ export async function run() {
           archive_btn.style.display = "block";
         }, 3000);
       } else {
-        alert("Generic error");
+        // eslint-disable-next-line no-undef
+        console.error("Generic error");
       }
     });
   } catch (error) {
+    // eslint-disable-next-line no-undef
     console.error("Error:", error.message);
   }
 }
@@ -434,18 +453,23 @@ export async function loadContent() {
   let vt_accesskey = document.getElementById("vt_accesskey").value;
 
   const token = await getChallenge(basicauth_user, basicauth_pass, vt_url, vt_user);
+  // eslint-disable-next-line no-undef
   console.log("Token received: ", token);
+  // eslint-disable-next-line no-undef
   console.log("vt_tok_accesskey (concat): ", token + vt_accesskey);
   const vt_tok_accesskey = CryptoJS.MD5(token + vt_accesskey).toString(CryptoJS.enc.Hex);
+  // eslint-disable-next-line no-undef
   console.log("vt_tok_accesskey: ", vt_tok_accesskey);
   const vt_session = await getSession(basicauth_user, basicauth_pass, vt_url, vt_user, vt_tok_accesskey);
+  // eslint-disable-next-line no-undef
   console.log("Session name:", vt_session);
 
   const projects = await getProjects(basicauth_user, basicauth_pass, vt_url, vt_session);
+  // eslint-disable-next-line no-undef
   console.log(projects);
 
   let selectHTML = `<select id="projectSelect">`;
-  projects.forEach(project => {
+  projects.forEach((project) => {
     selectHTML += `<option value="${project.id}">${project.projectname}</option>`;
   });
   selectHTML += `</select>`;
@@ -453,7 +477,7 @@ export async function loadContent() {
 }
 
 const config_btn = document.getElementById("config_btn");
-const config_div = document.querySelector('.collapsible-content');
-config_btn.addEventListener('click', () => {  
-  config_div.classList.toggle('open');
+const config_div = document.querySelector(".collapsible-content");
+config_btn.addEventListener("click", () => {
+  config_div.classList.toggle("open");
 });
