@@ -1,13 +1,10 @@
-New-SelfSignedCertificate -Type CodeSigning -Subject "CN=VtigerOpenia" -CertStoreLocation "Cert:\CurrentUser\My"
-
-SignTool sign /f "C:\Users\andre\vtiger\src\vtiger_openia.p7b" /p "VtigerOpenia" "C:\Users\andre\vtiger\dist\manifest.xml"
-
-
-
 Dev:
 npm run start
 
 Produzione: 
-cambiare https://andreachecchi.github.io/outlook_vtiger/dist/ in https://localhost:3000/
+cambiare https://localhost:3000/ in https://andreachecchi.github.io/outlook_vtiger/dist/
+
+compilare e distribuire con:
+npm run build
 
 Attenzione: il server che ospita vtiger deve trustare l'origine (CORS) nel caso in cui l'url di cui sopra non sia coincidente

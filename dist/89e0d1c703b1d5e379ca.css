@@ -16,10 +16,14 @@
      padding: 0;
  }
  
+.span_fields {
+    width: 4.5pc;
+}
+
  .ms-welcome__header {
-    padding: 20px;
-    padding-bottom: 30px;
-    padding-top: 100px;
+    padding: 10px;
+    /*padding-bottom: 30px;
+    padding-top: 100px;*/
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -77,4 +81,38 @@
 
 b {
     font-weight: bold;
+}
+
+select {
+    max-width: 146px;
+}
+
+#archive_btn {
+    border-width: thin;
+    border-style: solid;
+    padding: 5px;
+    background-color: aliceblue;
+    font-weight: bolder;
+}
+
+#saved_banner {
+    display: none;
+    border-width: thin;
+    border-style: solid;
+    border-color: yellow;
+    padding: 5px;
+    background-color: lightyellow;
+    font-weight: bolder;
+    color: black;
+}
+
+.collapsible-content {
+    background-color: lightyellow;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+.collapsible-content.open {
+    max-height: 1000px;
 }
